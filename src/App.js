@@ -1,6 +1,7 @@
 import React from 'react';
 import Tone, { Sampler } from "tone";
 import './App.css';
+import TempoDial from './TempoDial';
 
 import Tick from "./tick.wav"
 
@@ -38,30 +39,20 @@ export default class App extends React.Component {
     this.setState({isPlaying: false});
   }
 
-  changeTempo = (change) => {
-    this.setState((prevState) => {
-      let newBpm = prevState.bpm + change
-      Tone.Transport.bpm.value = newBpm;
-
-      return {
-        bpm: newBpm
-      }
-    });
+  changeTempo = (tempo) => {
+    Tone.Transport.bpm.value = tempo;
+    this.setState({bpm: tempo})
   }
 
   render() {
-    const { isLoaded, isPlaying } = this.state;
+    const { isLoaded, isPlaying, bpm } = this.state;
     return (
-      <div>
+      <div id="app-container">
         <button disabled={!isLoaded || isPlaying} onClick={this.handleStart}>
           start
         </button>
         <button disabled={!isPlaying} onClick={this.handleStop}>stop</button>
-        <div>
-          <button onClick={() => {this.changeTempo(-1)}}>-</button>
-          <div>{this.state.bpm}</div>
-          <button onClick={() => {this.changeTempo(1)}}>+</button>
-        </div>
+        <TempoDial bpm={this.state.bpm} changeTempo={this.changeTempo}/>
       </div>
     );
   }
