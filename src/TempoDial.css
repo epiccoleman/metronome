@@ -1,12 +1,11 @@
 .tempo-dial-container {
     display: inline-block;
     position: relative;
-
 }
 
 .bpm-display {
-  color: #61892f;
-  font-size: xx-large;
+  color: #bbb;
+  font-size: 5em;
   position: absolute;
   left: 50%;
   top: 50%;

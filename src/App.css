@@ -2,6 +2,14 @@ body {
   background-color: #222629;
 }
 
+#root {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -65%);
+  margin: 0;
+  position: absolute;
+}
+
 #app-container {
   text-align: center;
 }

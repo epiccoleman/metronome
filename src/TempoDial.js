@@ -10,13 +10,13 @@ const TempoDial = (props) => {
             value={props.bpm}
             min={40}
             max={220}
-            // stepSize={1}
-            // radius={100}
+            radius={200}
             arcSize={270}
             allowClick={true}
             rotationOffset={-45}
             color='#86c232'
-            onChange={props.changeTempo} />
+            onChange={props.changeTempo} 
+            />
         </div>
     );
 }
