@@ -15,7 +15,7 @@ const TempoDial = (props) => {
             arcSize={270}
             allowClick={true}
             rotationOffset={-45}
-            color='#faa620'
+            color='#86c232'
             onChange={props.changeTempo} />
         </div>
     );

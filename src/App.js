@@ -3,7 +3,10 @@ import Tone, { Sampler } from "tone";
 import './App.css';
 import TempoDial from './TempoDial';
 
-import Tick from "./tick.wav"
+import Tick from "./assets/sound/tick.wav"
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlay, faPause } from '@fortawesome/free-solid-svg-icons'
 
 export default class App extends React.Component {
 
@@ -39,6 +42,14 @@ export default class App extends React.Component {
     this.setState({isPlaying: false});
   }
 
+  handleStartStop = () => {
+    if (!this.state.isPlaying) {
+      this.handleStart();
+    } else {
+      this.handleStop();
+    }
+  }
+
   changeTempo = (tempo) => {
     Tone.Transport.bpm.value = tempo;
     this.setState({bpm: tempo})
@@ -48,11 +59,12 @@ export default class App extends React.Component {
     const { isLoaded, isPlaying, bpm } = this.state;
     return (
       <div id="app-container">
-        <button disabled={!isLoaded || isPlaying} onClick={this.handleStart}>
-          start
-        </button>
-        <button disabled={!isPlaying} onClick={this.handleStop}>stop</button>
-        <TempoDial bpm={this.state.bpm} changeTempo={this.changeTempo}/>
+        <TempoDial bpm={bpm} changeTempo={this.changeTempo}/>
+        <div>
+          <button className="play-pause-button" disabled={!isLoaded} onClick={this.handleStartStop}>
+            <FontAwesomeIcon icon={isPlaying ? faPause : faPlay} size="2x" style={{color: "#61892f" }}/>
+          </button>
+        </div>
       </div>
     );
   }
